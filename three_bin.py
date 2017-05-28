@@ -4,18 +4,22 @@ import pickle
 
 word_vecs = {}
 csv_header = "word"
-for x in range(1, 301):
+for x in range(1, 201):
     csv_header = csv_header + " V" + str(x)
 csv_header = csv_header + "\n"
 output_vocab_size=0
 #split_at
-out_1 = 'data/output.csv'
-with open('data/vocab.pkl','rb') as v:
+# in_1 = '/media/hrisheekesh/9092CD7892CD6378/wikipedia-pubmed-and-PMC-w2v.bin'
+# out_1 = '/media/hrisheekesh/9092CD7892CD6378/w2v_lower.csv'
+# vocab_pkl = '/media/hrisheekesh/9092CD7892CD6378/vocab.pkl'
+in_1 = 'data/ignore/wikipedia-pubmed-and-PMC-w2v.bin'
+out_1 = 'data/ignore/w2v_2.csv'
+vocab_pkl = 'data/vocab.pkl'
+with open(vocab_pkl,'rb') as v:
     vocab = pickle.load(v)
-    with open("data/wikipedia-pubmed-and-PMC-w2v.bin", "rb") as source, open(out_1, 'w', encoding='utf-8') as dest:
+    with open(in_1, "rb") as source, open(out_1, 'w', encoding='utf-8') as dest:
         dest.write(csv_header)
         header = source.readline()
-
         vocab_size, layer1_size = map(int, header.split())
         binary_len = np.dtype('float32').itemsize * layer1_size
         for line in range(vocab_size):
