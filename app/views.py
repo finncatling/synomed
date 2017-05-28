@@ -22,11 +22,41 @@ def index():
 
         #OUTPUT - dictionary 
 
+        output = [
+            {
+                'search': 'heart attack',
+                0: {
+                    'code': 'A123',
+                    'description': 'myocardial infarct',
+                    'distance' : 0.54
+                },
+                1: {
+                    'code': 'A122',
+                    'description': 'anterior myocardial infarct',
+                    'distance' : 0.32
+                }   
+            },
+            {
+                'search': 'cholera',
+                0: {
+                    'code': 'B123',
+                    'description': 'cholera',
+                    'distance' : 0.43
+                },
+                1: {
+                    'code': 'B122',
+                    'description': 'intestinal infection',
+                    'distance' : 0.23
+                }  
+            }
+        ]
+
 
     else:
         data=''
         debug = ''
         codes = []
+        output = output
 
     return render_template(
         'index.html', 
@@ -34,4 +64,5 @@ def index():
         form=form, 
         title='Synomed',
         debug=debug,
-        codes=list_of_codes)
+        codes=list_of_codes,
+        output=output)

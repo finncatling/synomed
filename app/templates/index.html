@@ -2,17 +2,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{data}}</h1>
+  <div class="container">
 
-  <form action="" method="post" name="login">
-      <p>
-          Enter data:<br>
-          {{ form.code_data(size=80) }}<br>
-      </p>
-      <p><input type="submit" value="Search"></p>
-  </form>
-  {% for code in codes %}
-  	<div>{{code}}</div>
+    <div class="text-center">
+      <div>LOGO</div>
+        <img src="logo.png">
+
+      <form action="" method="post" name="login">
+          <p>
+              <span class="alert alert-info" role="alert">Enter search terms in the box below, you can copy and paste data from a spreadsheet</span>
+          </p>
+          <br>
+          <p>
+              {{ form.code_data(class_="form control", rows="10", cols="100") }}<br>
+          </p>
+          <p><input type="submit" value="Search" class="btn btn-lg"></p>
+      </form>
+    </div>
+
+  </div><!-- /.container -->
+
+
+  {% for dict in output %}
+
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{dict["search"]}}</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <tbody>
+            {% for key, value in dict.items() %}
+            <tr>
+              <td>{{value['code']}}</td>
+              <td>{{value['description']}}</td>
+              <td>{{value['distance']}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   {% endfor %}
 
 {% endblock %}
