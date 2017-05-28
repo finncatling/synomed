@@ -66,7 +66,7 @@ def index():
         'index.html', 
         data=data, 
         form=form, 
-        title='Synomed',
+        title='Synger',
         debug=debug,
         codes=list_of_codes,
         output=output,
