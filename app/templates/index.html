@@ -3,7 +3,7 @@
 
 {% block content %}
   <div class="container">
-
+    <!--<div>{{ print_data }}</div>-->
     <div class="text-center">
       <div>LOGO</div>
         <img src="logo.png">
@@ -34,11 +34,13 @@
         <table class="table">
           <tbody>
             {% for key, value in dict.items() %}
+            {% if key != 'search' %}
             <tr>
               <td>{{value['code']}}</td>
               <td>{{value['description']}}</td>
               <td>{{value['distance']}}</td>
             </tr>
+            {% endif %}
             {% endfor %}
           </tbody>
         </table>
