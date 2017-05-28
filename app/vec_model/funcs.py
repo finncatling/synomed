@@ -90,11 +90,23 @@ def find_codes(
             query.reshape(1, final_embs.shape[0])
         )
         dict1["search"] = q_input[j]
+
+        # denom = np.sum(np.e**distances[0])
+
         for i in range(len(distances[0])):
             dict1[i] = {}
             dict1[i]['code'] = icd10.loc[indexes[0][i], ['code']].values[0]
             dict1[i]['description'] = icd10.loc[indexes[0][i], ['description']].values[0]
             dict1[i]['distance'] = distances[0][i]
+
+            # dict1[i]['percent'] = np.e**distances[0][i] / denom
+            # percent = 100 - 100 * distances[0][i] / 3
+
+            if distances[0][i] > 3:
+                dict1[i]['percent'] = 0
+            else:
+                dict1[i]['percent'] = 100 - 100 * distances[0][i] / 3
+
         output.append(dict1)
 
     return output
