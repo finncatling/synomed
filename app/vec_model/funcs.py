@@ -19,6 +19,10 @@ icd10_emb_exploded = pd.read_csv('data/icd10_emb_exploded.csv')
 icd10_emb_exploded.set_index(icd10.code, inplace=True)
 icd10_emb_exploded.drop('code', axis=1, inplace=True)
 
+# get rid of any codes with zero embeddings
+drop = icd10_emb_exploded[np.sum(icd10_emb_exploded,1)==0].index
+icd10_emb_exploded.drop(drop, inplace=True)
+
 
 def query_emb(query, w2v=w2v, probs=probs):
     q_tokens = word_tokenize(query)
