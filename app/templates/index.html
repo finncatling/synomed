@@ -1,0 +1,18 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{data}}</h1>
+
+  <form action="" method="post" name="login">
+      <p>
+          Enter data:<br>
+          {{ form.code_data(size=80) }}<br>
+      </p>
+      <p><input type="submit" value="Search"></p>
+  </form>
+  {% for code in codes %}
+  	<div>{{code}}</div>
+  {% endfor %}
+
+{% endblock %}
